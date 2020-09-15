@@ -84,35 +84,26 @@ let items = [
 ]
 
 ///
-/// basic bootstrap
-///		- dynamically generate a storefront basically
+/// this is an example basic bootstrap
+///	the idea is that a creator has some set of items (above)
+/// and here a storefront is manufactured with smart buttons based on the set of candidates
 ///
 
 async function main() {
-	if(typeof WallabyItemCard === 'undefined') {
-		console.error("Card not defined")
-		return
-	}
 	let div = document.querySelector("#participation_options")
 	for(let i = 0; i < items.length; i++) {
 		let item = items[i]
+		// run items through wallet to get enhanced facts
 		let enhanced = await WallabyAPI.query(item)
 		if(!enhanced || enhanced.error) {
 			console.error("sad")
 			console.error(enhanced)
 			continue
 		}
+		// for now use the generic built in card layout that wallet provides
 		let card = new WallabyItemCard(enhanced)
 		div.appendChild(card)
 	}
 }
 
 window.addEventListener('DOMContentLoaded', main)
-
-// test - this seems to work - i can call into the server from here
-window.addEventListener('DOMContentLoaded', async () => {
-	let results = await WallabyAPI.query()
-	console.log("********** testing ordinary api hit ********")
-	console.log(results)
-})
-

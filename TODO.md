@@ -1,5 +1,15 @@
+Overall site layout thoughts:
 
-Participate
+FOMT        [#Intro] [#schedule] [#participate] [#sponsor] and so on
+
+Intro
+-------
+
+Schedule
+---------
+
+Participate <- a nice list of multiple things to buy; playing with the idea of purchases
+			<- exercise different kinds: free, one time, multiple, limited edition, cash, crypto
 ------------
 
 Applaud
@@ -28,39 +38,3 @@ Unenennium membership; all the above and a badge next to your name as a sponsor
 
 The story of money; read the exciting story of money
 [$1.00, 15 given][view your ticket]
-
-
-
-todo
-
-	- ux pass
-
-	- the purchase button needs some work
-			[3/23/100 given][]
-
-	- when you try to buy, if you are not signed into the wallet
-		- i need to rip you over to the wallet so that you can do your sign in
-		- i'd like to try the nicer login mechanic
-
-	- 
-
-
-refining the flows
-
-
-conference site code
-
-	- a list of items to sale
-
-	- have them enhanced with server side state
-
-	- paint them all
-
-	- allow buy moments
-	- allow detail moments
-
-
-- one time
-- many time
-- limited edition
-
