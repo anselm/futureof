@@ -28,7 +28,7 @@
         ]
       },
       {
-        "source": "**/*.@(js|html|ejs)",
+        "source": "**/*.@(js|css|html|ejs)",
         "headers": [
           {"key": "Cache-Control","value": "max-age=0" },
           {"key": "Access-Control-Allow-Origin","value": "https://futureofmicropayments.web.app"},
