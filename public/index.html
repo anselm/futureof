@@ -120,14 +120,14 @@ schedule.forEach(item => {
 mount(document.getElementById("schedulable_things"), table)
 
 participants.forEach(item => {
-	let party = el("div",
+	let party = el("span",
 			el("img",{style:"width:120px;height:120px;border-radius:50%;overflow:hidden", src:item.img})
 		)
 	mount(document.getElementById("speaker_things"), party)
 })
 
 sponsors.forEach(item => {
-	let party = el("div",
+	let party = el("span",
 			el("img",{style:"width:120px",src:item.img})
 		)
 	mount(document.getElementById("sponsor_things"), party)
@@ -151,27 +151,33 @@ sponsors.forEach(item => {
 
 let tickets = [
 {
+    event:"product",
 	cid:"futureofmicropaymentsconf",
 	pid:"20200901_applause",
-	value:"0.25",
+	value2:"0.25",
+	value:20.0,
 	currency:"usd",
 	name:"Applause",
 	descr:"One unit of applause 👏🏾",
 	icon:"👏🏾"
 },
 {
+    event:"product",
 	cid:"futureofmicropaymentsconf",
 	pid:"20200901_donation",
 	value:"0.50",
+	value:50.0,
 	currency:"usd",
 	name:"Donation",
 	descr:"One breath of a child is a treasured gift 🧧",
 	icon:"🧧"
 },
 {
+    event:"product",
 	cid:"futureofmicropaymentsconf",
 	pid:"20200901_bronze",
-	value:"1.00",
+	value2:"1.00",
+	value:100.0,
     mask:1, // mask against other items in this category
     limit:1, // limit to one per person
     total:50,
@@ -183,9 +189,11 @@ let tickets = [
     icon:"🥉"
 },
 {
+    event:"product",
 	cid:"futureofmicropaymentsconf",
 	pid:"20200901_silver",
-	value:"2.00",
+	value2:"2.00",
+	value:200.0,
     mask:1, // mask against other items in this category
     limit:1, // limit to one 
     total:50,
@@ -198,9 +206,11 @@ let tickets = [
 },
 
 {
+    event:"product",
 	cid:"futureofmicropaymentsconf",
 	pid:"20200901_gold",
-	value:"3.00",
+	value2:"3.00",
+	value:300.0,
     mask:1, // mask against other items in this category
     limit:1, // limit to one
     total:50,
@@ -213,9 +223,11 @@ let tickets = [
 },
 
 {
+    event:"product",
 	cid:"futureofmicropaymentsconf",
 	pid:"20200901_Unenennium",
-	value:"5.00",
+	value2:"5.00",
+	value:5000000.0,
     mask:1, // mask against other items in this category
     limit:1, // limit to one 
     total:50,
@@ -224,9 +236,54 @@ let tickets = [
     name:"Future Of Micropayments Unenennium Membership Pass",
     descr:"Join the conference, get all the above and a sponsorship badge next to your name",
     art:"/art/money_surinam.jpg",
-    icon:"🏅"
-},
+    icon:"🏅",
+}
 ]
+
+///
+/// This is a typical representation of something that one can get
+/// It may be harder for a creator to define this - and the service can offer widgets here perhaps
+/// But anybody who is serious about showing content will have their own version of this
+///
+
+class MyItem extends HTMLElement {
+
+	constructor(data) {
+		super()
+		this.paint(data)
+	}
+
+	async paint(data) {
+		if(!data || data.error) {
+			console.error("no data so will not paint a pretty picture of an item")
+			return
+		}
+
+		let art = data.art ? data.art : "https://webwallaby.web.app/art/menu5.png" // hack
+
+		this.innerHTML=
+		`<div id="${data.id}" style="border:3px solid green;width:400x;padding:4px; margin:4px">
+		<h2>${data.name}<h2>
+		<p>${data.descr}</p>
+		<br/>
+		<img ${data.art?"visible":"hidden"} src="${art}" style="width:400px"></img>
+		<br>
+		</div>
+
+		<div>
+		</div>
+		`
+
+		// attach by hand due to wanting to pass a param
+
+		this.children[0].appendChild(new WallabyWidget(data))
+
+	}
+}
+
+customElements.define('my-item', MyItem )
+
+
 
 async function paint_tickets() {
 	let items = tickets
@@ -241,7 +298,7 @@ async function paint_tickets() {
 			continue
 		}
 		// for now use the generic built in card layout that wallet provides
-		let card = new WallabyItemCard(enhanced)
+		let card = new MyItem(enhanced)
 		div.appendChild(card)
 	}
 }
