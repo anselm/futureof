@@ -7,8 +7,167 @@
 <meta name="monetization" content="$coil.xrptipbot.com/5ra3zZ_aRIS8CUUFzZcHcQ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Spectral&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+<style>
+.gradient1 {
+	color:white;
+	padding:48px;
+	font-color:white;
+	background: rgb(238,174,202);
+	background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(104,111,161,1) 100%);
+}
+.gradient2 {
+	color:white;
+	background: rgb(238,174,202);
+	background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(104,111,161,1) 100%);
+}
+.gradient3 {
+	color:white;
+	background: rgb(238,174,202);
+	background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(104,111,161,1) 100%);
+}
+</style>	
+
+
 </head>
 
+<!--
+Only use typography in powers of 8 to create visual consistency. Check Figma file for specific sizes of elements. 
+Add spacing at 45 or so, or 80 between large sections. 
+Elements that are related can have spacing of 16px. 
+I put it on a 12 column grid. See attached. 
+-->
+
+
+<body>
+
+<div class="page">
+
+	<div class="gradient1">
+		<h1>The Future of Micropayments</h1>
+
+		<p><b>
+		The Future of Micropayments is a conference on the 
+		<br/>
+		emerging alternative ecosystems of money, transactions,
+		<br/>
+		creator support and web standards. 
+		</b></p>
+
+		<br/>
+
+		<span>
+		5 November 2020
+		<br/>
+		9am-4pm PST
+		</span>
+		<span>
+		Online through
+		Nexus Events
+		</span>
+
+		<br/>
+		<br/>
+
+		<center>
+		<button class="bigbutton">RSVP WITH WALLABY</button>
+		</center>
+
+
+	</div>
+
+	<div>
+		<br/>
+		<center><h2>About</h2></center>
+		<p style="margin-left:48px">
+		Bringing the fintech industry together with artists,
+		<br/>
+		programmers, designers, cryptographers, creators and
+		<br/>
+		consumers to inspire each other, share points of view,
+		<br/>
+		discuss new ideas, and look for solutions together. 
+		</p>
+	</div>
+
+	<br/>
+	<br/>
+
+	<div class="gradient2">
+		<br/>
+		<center><h2>Partners</h2></center>
+		<br/>
+		<center>
+		<p style="margin-left:48px">
+			<div id="sponsor_things"></div>
+		</p>
+	</center>
+		<br/>
+		<br/>
+	</div>
+
+	<br/>
+	<br/>
+
+	<div>
+		<br/>
+		<center><h1>Submit a Lightning Talk</h1></center>
+		<p style="margin-left:48px">
+		Speak at The Future of Micropayments. We have 6 Lighting Talk spots of 10 minutes each! <a href="/#form">Fill out the form here</a> by 10 October 2020.
+		</p>
+
+		<br/>
+		<p style="margin-left:48px">
+		Speaker suggestions? Yes, please! Send a quick note to 
+		<br/>
+		<a href="https://twitter.com/@caseorganic">@caseorganic</a> or <a href="https://twitter.com/@anselm">@anselm</a> on Twitter. 
+		</p>
+	</div>
+
+	<br/>
+	<br/>
+
+	<div>
+		<br/>
+		<center><h1>Schedule</h1></center>
+	</div>
+
+	<br/>
+	<br/>
+
+	<div>
+		<center><h1>Tickets</h1></center>
+		<p style="margin-left:48px">
+		Get your ticket through Wallaby, an experimental new
+		<br/>
+		Micropayment provider. Tickets are very cheap
+		<br/>(Micropayments!) but also range in price depending whether
+		<br/>
+		you’d like to help out with future conferences. 
+		</p>
+	</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegBD_Bjk3yvZgFGZMh3G0uy6P-Q-XgoAYKpx7Y_-orghV6AA/viewform?embedded=true" width="640" height="1202" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+</div>
+
+</body>
+
+
+
+
+<!--
 <body style="background:url(/art/backdrop.png);background-size:cover;">
 
 <div class="nav">
@@ -76,6 +235,8 @@
 </div>
 
 </body>
+-->
+
 </html>
 
 
@@ -112,27 +273,35 @@ let schedule = [
 
 import { el, list, mount } from "https://redom.js.org/redom.es.min.js";
 
-const table = new el("table.tabular")
-schedule.forEach(item => {
-	let tr = el("tr",el("td",item.time),el("td",item.lead),el("td",item.noise))
-	mount(table, tr)
-})
-mount(document.getElementById("schedulable_things"), table)
+function paint_stuff() {
 
-participants.forEach(item => {
-	let party = el("span",
-			el("img",{style:"width:120px;height:120px;border-radius:50%;overflow:hidden", src:item.img})
-		)
-	mount(document.getElementById("speaker_things"), party)
-})
+	/*
+	const table = new el("table.tabular")
+	schedule.forEach(item => {
+		let tr = el("tr",el("td",item.time),el("td",item.lead),el("td",item.noise))
+		mount(table, tr)
+	})
+	mount(document.getElementById("schedulable_things"), table)
+	*/
 
-sponsors.forEach(item => {
-	let party = el("span",
-			el("img",{style:"width:120px",src:item.img})
-		)
-	mount(document.getElementById("sponsor_things"), party)
-})
+	/*
+	participants.forEach(item => {
+		let party = el("span",
+				el("img",{style:"width:120px;height:120px;border-radius:50%;overflow:hidden", src:item.img})
+			)
+		mount(document.getElementById("speaker_things"), party)
+	})
+	*/
 
+	sponsors.forEach(item => {
+		let party = el("span",
+				el("img",{style:"width:120px",src:item.img})
+			)
+		mount(document.getElementById("sponsor_things"), party)
+	})
+}
+
+paint_stuff()
 
 </script>
 
@@ -152,7 +321,7 @@ sponsors.forEach(item => {
 let tickets = [
 {
     event:"product",
-	cid:"futureofmicropaymentsconf",
+	sponsor:"futureofmicropaymentsconf",
 	pid:"20200901_applause",
 	value2:"0.25",
 	value:20.0,
@@ -163,7 +332,7 @@ let tickets = [
 },
 {
     event:"product",
-	cid:"futureofmicropaymentsconf",
+	sponsor:"futureofmicropaymentsconf",
 	pid:"20200901_donation",
 	value:"0.50",
 	value:50.0,
@@ -174,7 +343,7 @@ let tickets = [
 },
 {
     event:"product",
-	cid:"futureofmicropaymentsconf",
+	sponsor:"futureofmicropaymentsconf",
 	pid:"20200901_bronze",
 	value2:"1.00",
 	value:100.0,
@@ -190,7 +359,7 @@ let tickets = [
 },
 {
     event:"product",
-	cid:"futureofmicropaymentsconf",
+	sponsor:"futureofmicropaymentsconf",
 	pid:"20200901_silver",
 	value2:"2.00",
 	value:200.0,
@@ -207,7 +376,7 @@ let tickets = [
 
 {
     event:"product",
-	cid:"futureofmicropaymentsconf",
+	sponsor:"futureofmicropaymentsconf",
 	pid:"20200901_gold",
 	value2:"3.00",
 	value:300.0,
@@ -224,7 +393,7 @@ let tickets = [
 
 {
     event:"product",
-	cid:"futureofmicropaymentsconf",
+	sponsor:"futureofmicropaymentsconf",
 	pid:"20200901_Unenennium",
 	value2:"5.00",
 	value:5000000.0,
@@ -303,7 +472,7 @@ async function paint_tickets() {
 	}
 }
 
-window.addEventListener('DOMContentLoaded', paint_tickets)
+//window.addEventListener('DOMContentLoaded', paint_tickets)
 
 </script>
 

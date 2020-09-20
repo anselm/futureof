@@ -2,15 +2,6 @@
 
 body {}
 
-@import url('https://fonts.googleapis.com/css2?family=Cantarell&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fjalla&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
-
 :root {
 
   --void:#232426;
@@ -34,32 +25,31 @@ body {}
   --navheight:48px;
   --cardpercentwidth:600px;
   --cardmaxwidth:600px;
+  --pagewidth:600px;
+  --padsides:20px;
 }
 
 html,body,div,span,img,input,textarea,button,canvas,a,h1,h2,h3,p, .page, .sugarcard {
-  xfont-family: 'Merriweather', serif;
-  font-family: 'Fjalla', sans-serif;
+  font-family: 'Nunito', sans-serif;
   border: 0px;
   margin: 0px;
   padding: 0px;
   outline: none;
   text-decoration: none;
   box-sizing: border-box;
-  font-size:1.02em;
-  color:var(--textdark);
+  font-size: 1.04em;
 }
 
 h1,h2,h3  {
-  xfont-family: 'Lora', serif;
-  font-family: 'Cantarell', sans-serif;
-  color:var(--textheader);
+  font-family: 'Spectral', sans-serif;
   margin-top:10px;
-  margin-bottom:10px;
-  font-size:4em;
+  margin-bottom:20px;
+  font-size:1.65em;
 }
 
 h2,h3 {
-  font-size:2em;  
+  font-size:1.45em;
+  margin-bottom:10px;
 }
 
 .nav {
@@ -88,218 +78,47 @@ h2,h3 {
 }
 
 .page {
-  width:100%;
+  width:var(--pagewidth);
   height:100%;
-  top:var(--navheight);
-  background:var(--forearea);
+  margin:auto;
+  overflow:auto;
 }
 
-/************************************************************************************************/
-/* slider effect */
-
-
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 46px;
-  background: #55aad3;
-  outline: none;
-  opacity: 0.5;
-  transition: opacity .2s;
-  border-radius: 6px;
-  border:3px solid lightblue;
-}
-.slider:hover {
-  oxpacity: 1;
-}
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 60px;
-  height: 40px;
-  border:3px solid #4433cc;
-  border-radius: 6px;
-  background: #33225500;
-  cursor: pointer;
+@media screen and (max-width: 800px) {
+  .nav {
+    width:100%;
+  }
+  .page {
+    width:100%;
+  }
 }
 
-
-/*************************************************************************************/
-/* general style support */
-
-.scales {
-  transition: all .1s ease-in-out;
-}
-
-.scales:hover {
-  transform: scale(1.1);  
-}
-
-#darker {
-  background-color: #4c87b9;
-}
-
-.darker {
-  background-color: #4c87b9;
-}
 
 .bigbutton {
-  background:#f0f3ff;
+  margin:4px;
   padding:4px;
-  margin-top:4px;
-  margin-bottom:4px;
-  font-size:1.05em;
+  padding-left:32px;
+  padding-right:32px;
+  font-size:0.70em;
   justify-self:center;
   box-sizing: border-box;
-  width:30%;
   cursor: pointer;
+  border-radius:25px;
+
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  bxorder: none;
+  overflow: hidden;
+  outline:none;
+  border: 1px solid white;
+  color:white;
+  transition: all .2s ease-in-out;
 }
 
-.biginput {
-  background:#f8f3ff;
-  padding:10px;
-  margin-top:10px;
-  margin-bottom:10px;
-  font-size:1.1em;
-  justify-self:center;
-  box-sizing: border-box;
-  width:100%;
-  cursor: pointer;
-}
-
-/************************************************************************************************/
-/* small cards */
-
-.sugarcardsmall {
-  position:relative;
-  display: inline-block;
-  width:128px;
-  height:64px;
-  overflow:hidden;
-  border: 2px solid #aaaa00;
-  box-sizing: border-box;
-  margin: 4px;
-  cursor: grab;
-  transition: all .1s ease-in-out;
-}
-
-.sugarcardsmall:hover {
+.bigbutton:hover {
+  background-color: rgba(0.25,0.25,0.25,0.5);
   transform: scale(1.1);
 }
-
-/************************************************************************************************/
-/* most display items are some form of card */
-
-.sugarcard {
-  
-  display:flex;
-  flex-direction:column;
-  box-sizing: border-box;
-  position:relative;
-
-  background:var(--forearea);
-
-  width:var(--cardpercentwidth);
-  max-width:var(--cardmaxidth);
-
-  margin-top:8px;
-  margin-bottom:8px;
-  margin-left:auto;
-  margin-right:auto;
-  padding: 8px;
-
-  border: 1px solid var(--bordercolor);
-  border-radius:3px;
-}
-
-.sugarcard h1 {
-  z-index:2;
-}
-
-.sugarcard a {
-  color:var(--textlink)
-}
-
-.sugarcard p {
-  margin-top: 4px;
-  margin-bottom: 10px;
-}
-
-/* current design motif is to have actions be emoji; this wraps emoji */
-.action {
-  padding: 4px;
-  background:var(--forearea);
-  cursor: pointer;
-}
-
-/* current design motif is a circle representation of parties */
-.partyimage {
-  border-radius:100%;
-  width:32px;
-  height:32px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* current design motif is a header banner to briefly represent parties or groups or posts */
-.postimage {
-  width:100%;
-  height:256px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/*******************************************/
-
-
-      .respond {
-        display:flex;
-        background:white;
-      }
-
-      .respondfields {
-        flex:auto;
-        border-radius:4px;
-        box-sizing:border-box;
-        padding:1px;
-      }
-
-      .respondinput {
-        flex:auto;
-        outline: none;
-        cursor: pointer;
-        transition: all .1s ease-in-out;
-        padding-left: 8px;
-        z-index:2;
-      }
-
-      .respondinput:focus {
-        background: #f5f5f5;
-      }
-
-      .respondinput:hover {
-        background: #f5f5f5;
-      }
-
-      .respondbutton {
-        height:32px;
-        width:32px;
-        font-size: 22px;
-        background:var(--forearea);
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        transition: background-color .4s ease;
-      }
-
-      .respondbutton:hover {
-        background: #f5f5f5;
-      }
-
-
-
 
 
 .tabular {
