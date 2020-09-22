@@ -48,7 +48,7 @@ h1,h2,h3  {
 }
 
 h2,h3 {
-  font-size:1.45em;
+  font-size:1.40em;
   margin-bottom:10px;
 }
 
@@ -116,15 +116,19 @@ a {
 table {
   width: 100%;
   border: 0px solid #ddd;
-  padding: 8px;
+  padding: 0px;
+  margin: 0px;
   border-collapse: separate;
-  border-spacing: 15px;
+  border-spacing: 0px;
 }
 
 td {
   width: 100px;
   vertical-align: top;
-  margin: 20px;
+  padding:0px;
+  margin: 0px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 td+td {
   width: auto;
@@ -132,33 +136,49 @@ td+td {
 
 .block {
   margin:2px;
+  padding:45px;
 }
 
 .gradient1 {
   color:white;
-  padding:48px;
+  padding:45px;
   font-color:white;
   background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(104,111,161,1) 100%);
+  background: radial-gradient(circle, rgba(238,174,202,0.9) 0%, rgba(104,111,161,0.9) 100%);
+}
+
+.gradient1 a {
+  color:lavender;
 }
 
 .gradient2 {
   color:white;
+  padding:45px;
+  font-color:white;
   background: rgb(255,204,232);
   background: radial-gradient(circle, rgba(255,204,232,0.5) 0%, rgba(134,151,191,0.5) 100%);
 }
 
-.gradient3 {
-  color:white;
-  background: rgb(238,174,202);
+.fadein {
+  opacity: 0;
+  transform: translate(0, 4vh);
+  transition: all 1.5s;
 }
 
-
-
+.fadein.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
 
 @media screen and (max-width: 800px) {
-  .nav {
-    width:100%;
+  .block {
+    padding:20px;
+  }
+  .gradient1 {
+    padding:20px;
+  }
+  .gradient2 {
+    padding:20px;
   }
   .page {
     width:100%;

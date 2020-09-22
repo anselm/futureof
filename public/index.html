@@ -7,25 +7,32 @@
 <meta name="monetization" content="$coil.xrptipbot.com/5ra3zZ_aRIS8CUUFzZcHcQ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/css/style.css?count=6">
-
 <link href="https://fonts.googleapis.com/css2?family=Spectral&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
 </head>
 
-<!--
-Only use typography in powers of 8 to create visual consistency. Check Figma file for specific sizes of elements. 
-Add spacing at 45 or so, or 80 between large sections. 
-Elements that are related can have spacing of 16px. 
-I put it on a 12 column grid. See attached. 
--->
-
+<script src="https://unpkg.com/shader-doodle"></script>
 
 <body>
 
 <div class="page">
 
-	<div class="gradient1">
+
+<style>
+.title {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+</style>
+
+	<div class="gradient1" style="position:relative">
 		<h1>The Future of Micropayments</h1>
 
 		<p style="font-size:1.1em;font-weight:bold">
@@ -37,24 +44,64 @@ I put it on a 12 column grid. See attached.
 		<br/>
 
 		<p style="color:#fff4ff">
-		Remember the <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Future+Of+Micropayments+Conference&dates=20201105T090000/20201105T170000&details=http://futureofmicropayments.web.app&location=San+Francisco,CA,+94110&sf=true&output=xml">5th of November 2020!</a>
+		<a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Future+Of+Micropayments+Conference&dates=20201105T090000/20201105T170000&details=http://futureofmicropayments.web.app&location=San+Francisco,CA,+94110&sf=true&output=xml">5 November 2020 9am-4pm PST </a>
 		<br/>
-		9am-4pm PST Online through
-		<a href="https://nexusevents.io">Nexus Events</a>
+		Online through <a href="https://nexusevents.io">Nexus Events</a>
 		</p>
-
 		<br/>
-		<br/>
-
 		<center>
 		<button style="color:white;border:1px solid white" class="bigbutton">RSVP WITH WALLABY</button>
 		</center>
 
 
+<!-- a subtle effect with explicit permission from : https://www.shadertoy.com/view/ltBXRc -->
+<shader-doodle id=thing shadertoy style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;">
+<script type="x-shader/x-fragment" src="shader.frag">
+mat2 rotate2d(float angle){
+    return mat2(cos(angle),-sin(angle),
+                sin(angle),cos(angle));
+}
+
+float variation(vec2 v1, vec2 v2, float strength, float speed) {
+	return sin(
+        dot(normalize(v1), normalize(v2)) * strength + iTime * speed
+    ) / 100.0;
+}
+
+vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
+    vec2 diff = center-uv;
+    float len = length(diff);
+    len += variation(diff, vec2(0.0, 1.0), 5.0, 2.0);
+    len -= variation(diff, vec2(1.0, 0.0), 5.0, 2.0);
+    float circle = smoothstep(rad-width, rad, len) - smoothstep(rad, rad+width, len);
+    return vec3(circle);
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
+	vec2 uv = fragCoord.xy / iResolution.xy;
+    uv.x *= 1.5;
+    uv.x -= 0.25;
+    vec3 color;
+    float radius = 0.35;
+    vec2 center = vec2(0.5);
+    //paint color circle
+    color = paintCircle(uv, center, radius, 0.1);
+    //color with gradient
+    vec2 v = rotate2d(iTime) * uv;
+    color *= vec3(v.x, v.y, 0.7-v.y*v.x);
+    //paint white circle
+    color += paintCircle(uv, center, radius, 0.01);
+	fragColor = vec4(color, 1.0);
+}
+</script>
+</shader-doodle>
+
 	</div>
 
+
+	<!---------------------------------------------------------------------- about ------------------------------------------------>
+
 	<div class="block">
-		<br/>
 		<center><h2>About</h2></center>
 		<p>
 		Bringing the fintech industry together with artists,
@@ -65,164 +112,83 @@ I put it on a 12 column grid. See attached.
 	</div>
 
 	<br/>
-	<br/>
+
+
+	<!---------------------------------------------------------------------- partners ------------------------------------------------>
 
 	<div class="gradient2">
-		<br/>
-		<center><h2>Partners</h2></center>
-		<br/>
+		<center><h2 style=color:black>Partners</h2></center>
 		<div style="display:flex;align-items:center;justify-content:center;">
-			<div id="sponsor_things"></div>
+		<div id="sponsor_things"></div>
 		</div>
-		<br/>
-		<br/>
 	</div>
 
-	<br/>
-	<br/>
+
+	<!---------------------------------------------------------------------- lightning talk ------------------------------------------------>
+
 
 	<div class="block">
-		<br/>
-		<center><h1>Submit a Lightning Talk</h1></center>
+		<center><h2>Submit a Lightning Talk</h2></center>
 		<p>
-		Speak at The Future of Micropayments. We have Lighting Talk spots of 5 minutes each! <a href="/#form">Fill out the form here</a> by 10 October 2020.
-		</p>
-
-		<br/>
-		<p>
-		Speaker suggestions? Yes, please! Send a quick note to 
-		<br/>
-		<a href="https://twitter.com/@caseorganic">@caseorganic</a> or <a href="https://twitter.com/@anselm">@anselm</a> on Twitter. 
+			Want to speak at The Future of Micropayments? We have Lighting Talk spots of 5 minutes each! <a href="/#form">Fill out the form here</a> by 10 October 2020.
+			<br/>
+			<br/>
+			Speaker suggestions? Yes, please! Send a quick note to 
+			<a href="https://twitter.com/@caseorganic">@caseorganic</a> or <a href="https://twitter.com/@anselm">@anselm</a> on Twitter. 
 		</p>
 	</div>
 
-	<br/>
-	<br/>
+	<!---------------------------------------------------------------------- schedule ------------------------------------------------>
 
-	<div class="block">
-		<br/>
-		<center><h1>Schedule</h1></center>
-		<p>
+	<div class="block" style="padding-top:0px">
+		<center><h2>Schedule</h2></center>
 		<p style="font-size:0.8em;color:rgba(0.7,0.7,0.7,0.5)">PST</p>
 		<div id="schedulable_things"></div>
-		</p>
 	</div>
 
-	<br/>
-	<br/>
 
-	<div class="block">
-		<center><h1>Tickets</h1></center>
+	<!---------------------------------------------------------------------- get ticket ------------------------------------------------>
+
+	<div class="block" style="padding-top:0px">
+		<center><h2>Get your ticket!</h2></center>
 		<p>
 		Get your ticket through Wallaby, an experimental new
-		Micropayment provider. Tickets are very cheap
+		payment provider. Tickets are very cheap
 		(Micropayments!) but also range in price depending whether
 		you’d like to help out with future conferences. 
+		</p>
 		<br/>
-		<br/>
-
 		<center>
 		<button class="bigbutton">RSVP WITH WALLABY</button>
 		</center>
-
-		</p>
 	</div>
-
-	<br/>
 	<br/>
 
-<div id="form"></div>
+	<!---------------------------------------------------------------------- form ------------------------------------------------>
+
+	<div id="form"></div>
 
 
-<center style="background:#eeeeee">
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegBD_Bjk3yvZgFGZMh3G0uy6P-Q-XgoAYKpx7Y_-orghV6AA/viewform?embedded=true" width="320" height="1202" frameborder="0" marginheight="0" marginwidth="0" style="padding:0px;margin:0px;width:320px">Loading…</iframe>
-</center>
-
-</div>
-
-
-</body>
-
-
-
-
-<!--
-<body style="background:url(/art/backdrop.png);background-size:cover;">
-
-<div class="nav">
-<a style="filter:grayscale(0%);color:purple;font-weight:heavy" class="router" href="/">FOMC</a>
-<div style="flex:auto"></div>
-<a href="/#overview">Overview</a>
-<a href="/#sponsors">Sponsors</a>
-<a href="/#speakers">Speakers</a>
-<a href="/#schedule">Schedule</a>
-<a href="/#tickets">Tickets</a>
-<a href="/#press">Press</a>
-<a href="/#contact">Contact</a>
-<a href="/#privacy">Privacy</a>
-</div>
-
-<div class="pad"></div>
-
-<div class="page" style="width:80%;margin:auto">
-
-	<center>
-	<h1 style="font-size:4em">THE FUTURE OF MICROPAYMENTS</h1>
+	<center style="background:#eeeeee">
+	<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegBD_Bjk3yvZgFGZMh3G0uy6P-Q-XgoAYKpx7Y_-orghV6AA/viewform?embedded=true" width="320" height="1720" frameborder="0" marginheight="0" marginwidth="0" style="padding:0px;margin:0px;width:320px">Loading…</iframe>
 	</center>
 
-	<h2 id="overview">OVERVIEW</h2>
-	Join us online on 5th of November at <a href="https://nexusevents.com">Nexus Events</a> at 9am PST at the Future of Micro Payments Conference.
 	<br/>
 	<br/>
-	This is a new conference on the missing middle of payments online. Currencies, exchanges and empowering creators is our mission. Micro currency is a hot idea with many different opportunities. This conference is a way of helping people meet each other, inspiring each other an setting the stage for a new sector of the fintech industry. We bring together creators, makers, developers and inventors to hear each other and connect on solving one of the biggest small problems of our time.
 	<br/>
 	<br/>
-	We're bringing together minds from the fintech industry, artists, programmers, designers, cryptographers, creators and consumers to inspire each other, share points of view, discuss new ideas, and look for solutions together.
-	<br/>
-	<br/>
-	We are organizing presentation, lightning talks, speed networking and birds of a feather using the Nexus Events online conference tools. We have a fun fast speed networking session run by Nexus Events to introduce people to each other based on complementary interests.
-	<br/>
-	<br/>
-	<h2 id="about">THE CHALLENGE</h2>
-	Money is a form of communication as well as a medium of payment. Being able to make small direct payments for a product or service also signals more widely which products or services are best.
-	<br/>
-	<br/>
-	However today there is a transaction gap at the lower end of the payments spectrum, especially online, due to frictions around payments. International payments are hindered, and the unbanked disproportionately cannot participate in emerging future economies.
-	<br/>
-	<br/>
-	Empowering people to directly pay each other online, as an alternative to advertising or subscriptions may at the very least help creators and will help catalyze rich content and experiences for consumers. At the very most we may create opportunities for people around the world and help foster an explosion of creativity and communication.
-	<br/>
-
-	<h2 id="sponsors">SPONSORS</h2>
-	<div id="sponsor_things"></div>
-
-	<h2 id="speakers">SPEAKERS</h2>
-	<div id="speaker_things"></div>
-
-	<h2 id="schedule">SCHEDULE</h2>
-	<div id="schedulable_things"></div>
-
-	<h2 id="tickets">TICKETS</h2>
-	<div id="ticket_things"></div>
-
-	<h2 id="press">PRESS</h2>
-
-	<h2 id="contact">CONTACT</h2>
-
-	<h2 id="privacy">PRIVACY</h2>
 
 </div>
 
-</body>
--->
 
+</body>
 </html>
 
 
 <script type=module>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SOME DYNAMIC STUFF
+// dynamic sponsors, participants, schedule
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 let sponsors = [
@@ -243,14 +209,10 @@ let schedule = [
 	{time:"",	 text:"Keynote:", 				  lead:"Douglas Rushkoff"},
 	{time:"10a", text:"Micropayments in Action:", lead:"Yuiry@PumaBrowser"},
 	{time:"11a", text:"Breakout Sessions",		  lead:""},
-	{},
 	{time:"",	 text:"Creator Track:",			  lead:"Andrzej Mazur@JS13k Games", more:"Listening to Creator Needs"},
-	{},
-	{time:"",	 text:"",lead:"Melanie McDougal",more:"Crypto Track and Speed Networking"},
-	{},
+	{time:"",	 text:"Crypto Track:",			  lead:"Melanie McDougal@Nexus Events",more:"Speed Networking"},
 	{},
 	{time:"12p", text:"Music Break"},
-	{},
 	{},
 	{time:"1p",  text:"5 Minute Lightning Talks"},
 	{time:"3p",  text:"Breakouts", more:"General socializing and breakouts in Mozilla Hubs"},
@@ -262,9 +224,9 @@ function paint_stuff() {
 	schedule.forEach(item => {
 		let tr = table.appendChild(document.createElement("tr"))
 		let td = tr.appendChild( document.createElement("td") )
-		td.innerHTML = item.time || ""
+		td.innerHTML = `<span style=color:#888888>${item.time||""}`
 		td = tr.appendChild( document.createElement("td") )
-		td.innerHTML = `<b>${item.text||""}</b> ${item.lead||""} ${item.more||""}`
+		td.innerHTML = `<b>${item.text||""}</b> <span style=color:darkblue>${item.lead||""}</span> ${item.more||""}`
 	})
 	document.getElementById("schedulable_things").appendChild(table)
 
@@ -290,11 +252,15 @@ paint_stuff()
 </script>
 
 <script src="https://webwallaby.web.app/js/base/api.js"></script>
+
 <script>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DYNAMICALLY INJECT TICKETS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+
 
 
 ///
@@ -393,12 +359,6 @@ let tickets = [
 }
 ]
 
-///
-/// This is a typical representation of something that one can get
-/// It may be harder for a creator to define this - and the service can offer widgets here perhaps
-/// But anybody who is serious about showing content will have their own version of this
-///
-
 class MyItem extends HTMLElement {
 
 	constructor(data) {
@@ -436,8 +396,6 @@ class MyItem extends HTMLElement {
 
 customElements.define('my-item', MyItem )
 
-
-
 async function paint_tickets() {
 	let items = tickets
 	let div = document.querySelector("#ticket_things")
@@ -456,10 +414,34 @@ async function paint_tickets() {
 	}
 }
 
-//window.addEventListener('DOMContentLoaded', paint_tickets)
+window.addEventListener('DOMContentLoaded', paint_tickets)
+*/
+
+
+
 
 </script>
 
+
+<script>
+window.addEventListener('scroll', function(e) {
+	let items = document.querySelectorAll(".block")
+	for (var i = 0; i < items.length; i++) {
+		let item = items[i];
+		let top = item.getBoundingClientRect().top
+		let height = item.getBoundingClientRect().height
+		item.classList.add("fadein")
+		let wheight = window.innerHeight - height/4
+
+		//if(top < -height/2) item.classList.remove("visible")
+		//if(top > -height/2) item.classList.add("visible")
+
+		if(top < wheight) item.classList.add("visible")
+		if(top > wheight) item.classList.remove("visible")
+
+	}
+})
+</script>
 
 
 
