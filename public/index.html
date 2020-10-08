@@ -6,9 +6,9 @@
 <link rel="icon" href="/art/favicon.ico">
 <meta name="monetization" content="$coil.xrptipbot.com/5ra3zZ_aRIS8CUUFzZcHcQ">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<link rel="stylesheet" type="text/css" href="/css/style.css?count=6">
 <link href="https://fonts.googleapis.com/css2?family=Spectral&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css?count=6">
 </head>
 
 <script src="https://unpkg.com/shader-doodle"></script>
@@ -17,59 +17,34 @@
 
 <div class="page">
 
+<!-- ---------------------------------- TOP ------------------------------- -->
 
-<style>
-.title {
-	position: absolute;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-}
-</style>
+<div class="gradient1" style="position:relative">
 
-	<div class="gradient1" style="position:relative">
-		<h1>The Future of Micropayments</h1>
-
-		<p style="font-size:1.1em;font-weight:bold">
-		The Future of Micropayments is a conference on the 
-		emerging ecosystems of money, transactions,
-		creator support and standards. 
-		</p>
-
-		<br/>
-
-		<p style="color:#fff4ff">
+<center>
+	<h1>The Future of Micropayments</h1>
+	<br/>
+	<p style="font-size:1.1em;">Join us on November 5th for a virtual unconference exploring the future of money at human scale.</p>
+	<br/>
+	<p style="color:#fff4ff">
 		<a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Future+Of+Micropayments+Conference&dates=20201105T090000/20201105T170000&details=http://futureofmicropayments.web.app&location=San+Francisco,CA,+94110&sf=true&output=xml">5 November 2020 9am-4pm PST </a>
 		<br/>
 		Online through <a href="https://nexusevents.io">Nexus Events</a>
-		</p>
-		<br/>
-		<center>
-		<a href="https://www.eventbrite.com/e/future-of-micropayments-tickets-122181812089">
-		<button style="color:white;border:1px solid white" class="bigbutton">RSVP</button>
-		</a>
-		</center>
+	</p>
+	<br/>
+	<a href="https://www.eventbrite.com/e/future-of-micropayments-tickets-122181812089">
+		<button style="color:white;border:1px solid white" class="bigbutton">JOIN US!</button>
+	</a>
+</center>
 
+<!----------------------- a subtle effect from https://www.shadertoy.com/view/ltBXRc -->
 
-<!-- a subtle effect with explicit permission from : https://www.shadertoy.com/view/ltBXRc -->
 <shader-doodle id=thing shadertoy style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;">
 <script type="x-shader/x-fragment" src="shader.frag">
-mat2 rotate2d(float angle){
-    return mat2(cos(angle),-sin(angle),
-                sin(angle),cos(angle));
-}
-
+mat2 rotate2d(float angle){return mat2(cos(angle),-sin(angle),sin(angle),cos(angle));}
 float variation(vec2 v1, vec2 v2, float strength, float speed) {
-	return sin(
-        dot(normalize(v1), normalize(v2)) * strength + iTime * speed
-    ) / 100.0;
+	return sin( dot(normalize(v1), normalize(v2)) * strength + iTime * speed ) / 100.0;
 }
-
 vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
     vec2 diff = center-uv;
     float len = length(diff);
@@ -78,7 +53,6 @@ vec3 paintCircle (vec2 uv, vec2 center, float rad, float width) {
     float circle = smoothstep(rad-width, rad, len) - smoothstep(rad, rad+width, len);
     return vec3(circle);
 }
-
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 	vec2 uv = fragCoord.xy / iResolution.xy;
     uv.x *= 1.5;
@@ -98,89 +72,144 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 </script>
 </shader-doodle>
 
-	</div>
+</div>
 
 
-	<!---------------------------------------------------------------------- about ------------------------------------------------>
+<!-------------- about ------------------------------------------------>
 
-	<div class="block">
-		<center><h2>About</h2></center>
-		<p>
-		Bringing the fintech industry together with artists,
-		programmers, designers, cryptographers, creators and
-		consumers to inspire each other, share points of view,
-		discuss new ideas, and look for solutions together. 
-		</p>
-	</div>
+<br/>
+<div class="block">
 
-	<br/>
+	<center>
 
-
-	<!---------------------------------------------------------------------- partners ------------------------------------------------>
-
-	<div class="gradient2">
-		<center><h2 style=color:black>Partners</h2></center>
-		<div style="display:flex;align-items:center;justify-content:center;">
-		<div id="sponsor_things"></div>
-		</div>
-	</div>
-
-
-	<!---------------------------------------------------------------------- lightning talk ------------------------------------------------>
-
-
-	<div class="block">
-		<center><h2>Submit a Lightning Talk</h2></center>
-		<p>
-			Want to speak at The Future of Micropayments? We have Lighting Talk spots of 5 minutes each! <a href="/#form">Fill out the form here</a> by 10 October 2020.
-			<br/>
-			<br/>
-			Speaker suggestions? Yes, please! Send a quick note to 
-			<a href="https://twitter.com/@caseorganic">@caseorganic</a> or <a href="https://twitter.com/@anselm">@anselm</a> on Twitter. 
-		</p>
-	</div>
-
-	<!---------------------------------------------------------------------- schedule ------------------------------------------------>
-
-	<div class="block" style="padding-top:0px">
-		<center><h2>Schedule</h2></center>
-		<p style="font-size:0.8em;color:rgba(0.7,0.7,0.7,0.5)">PST</p>
-		<div id="schedulable_things"></div>
-	</div>
-
-
-	<!---------------------------------------------------------------------- get ticket ------------------------------------------------>
-
-	<div class="block" style="padding-top:0px">
-		<center><h2>Get your ticket!</h2></center>
+		<h2>Manifesto</h2>
 		<br/>
-		<center>
-		<a href="https://www.eventbrite.com/e/future-of-micropayments-tickets-122181812089">
-		<button class="bigbutton">RSVP</button>
-		</a>
-		</center>
-	</div>
-	<br/>
 
-	<!---------------------------------------------------------------------- form ------------------------------------------------>
+		<p><strong>Money has become a form of communication. It can separate truth from fiction, it can signal value - as well as support content and creators that we love.</strong></p>
+		<br/>
 
-	<div id="form"></div>
+		<p>We’re bringing together content creators, artists, programmers, designers, cryptographers and thinkers to inspire each other, share points of view and discuss the design and architecture of exchanging value.</p>
+		<br/>
+
+		<p>The conference will be held through Nexus Events, a flexible virtual platform that will allow us to provide presentations, breakout sessions and networking sessions to bring  complementary skills and interests.</p>
+		<br/>
+
+		<p>If you’ve ever had frustrations with online payments, the creative economy, or simply want to explore the future of payments at human scale, please join us!</p>
+		<br/>
+
+<!--
+
+<p>This is an event that holds space for how we can design multiple futures with multiple viewpoints.</p> 
+
+-->
 
 
-	<center style="background:#eeeeee">
-	<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegBD_Bjk3yvZgFGZMh3G0uy6P-Q-XgoAYKpx7Y_-orghV6AA/viewform?embedded=true" width="320" height="1720" frameborder="0" marginheight="0" marginwidth="0" style="padding:0px;margin:0px;width:320px">Loading…</iframe>
 	</center>
 
+</div>
+
+<!---------------------------------------------------------------------- partners ------------------------------------------------>
+
+<div class="gradient2">
+	<center><h2 style=color:purple>Partners</h2></center>
+	<br/>
+	<div style="display:flex;align-items:center;justify-content:center;"><div id="sponsor_things"></div></div>
+</div>
+<br/>
+<br/>
+<br/>
+
+<!---------------------------------------------------------------------- schedule ------------------------------------------------>
+
+<div class="block" style="padding-top:0px">
+	<center><h2>Schedule</h2></center>
+	<br/>
+	<p style="font-size:0.8em;color:rgba(0.7,0.7,0.7,0.5)">PST</p>
+	<div id="schedulable_things"></div>
+</div>
+<br/>
+
+<!---------------------------------------------------------------------- get ticket ------------------------------------------------>
+
+<div class="block" style="padding-top:0px">
+	<center><h2>Get your ticket!</h2></center>
+	<br/>
+	<center>
+	<a href="https://www.eventbrite.com/e/future-of-micropayments-tickets-122181812089">
+	<button class="bigbutton">RSVP</button>
+	</a>
+	</center>
+</div>
+
+<!---------------------------------------------------------------------- lightning talk ------------------------------------------------>
+
+<div class="block">
+	<center><h2>Submit a 5 Minute Talk</h2></center>
+	<br/>
+	<p><center>Want to speak at The Future of Micropayments?</p>
+	<p>We have 5 minute talking spots. 
+	<a href="http://www.slide-talk.com/lightning-talk-phenomena-tips-and-tricks/">If you haven't given a lightning talk we highly recommend it!</a>
+	Submissions are due by 20 October 2020.</center></p>
 	<br/>
 	<br/>
+</div>
+
+<!---------------------------------------------------------------------- form ------------------------------------------------>
+
+<div id="form"></div>
+
+<center style="background:#eeeeee">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegBD_Bjk3yvZgFGZMh3G0uy6P-Q-XgoAYKpx7Y_-orghV6AA/viewform?embedded=true" width="320" height="1500" frameborder="0" marginheight="0" marginwidth="0" style="padding:0px;margin:0px;width:500px">Loading…</iframe>
+</center>
+
+<br/>
+<br/>
+
+<!---------------------------------------------------------------------- thank you! ------------------------------------------------>
+
+<div class="block">
+<center>
+	<p>
+	Speaker suggestions? Yes, please! Send a quick note to 
+	<a href="https://twitter.com/@caseorganic">@caseorganic</a> or <a href="https://twitter.com/@anselm">@anselm</a> on Twitter. 
+	</p>
+	<br/>
+	<a href="https://twitter.com/intent/tweet?url=https://futureofmicropayments.web.app&text=Remember+Remember+the+5th+of+November+2020+for+the+future+of+micropayments+conference!+#futureofmicropayments" class="twitter-share-button">Share with your friends</a>
 	<br/>
 	<br/>
+	We will also have a <a href="https://discord.com/channels/763837815590354964/763837815590354966">Discord Room</a> up during the conference.
+	<br/>
+	<br/>
+	<h2>See you soon!</h2>
+	<br/>
+</center>
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 </div>
 
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script type=module>
@@ -190,8 +219,9 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 let sponsors = [
-	{name:"Grant For The Web",img:"https://js13kgames.com/img/partners/2020/grantfortheweb.png"},
-	{name:"Mozilla",img:"https://js13kgames.com/img/partners/2020/mozilla.png"},
+	{name:"Puma Browser",img:"/art/puma.svg"},
+//	{name:"Grant For The Web",img:"https://js13kgames.com/img/partners/2020/grantfortheweb.png"},
+//	{name:"Mozilla",img:"https://js13kgames.com/img/partners/2020/mozilla.png"},
 	{name:"Nexus Events",img:"/art/nexusevents.svg"}
 ]
 
@@ -203,17 +233,22 @@ let participants = [
 ]
 
 let schedule = [
-	{time:"9a",  text:"Introduction and Kickoff:", lead:"Amber Case" },
-	{time:"",	 text:"Keynote:", 				  lead:"Douglas Rushkoff"},
-	{time:"10a", text:"Micropayments in Action:", lead:"Yuiry@PumaBrowser"},
-	{time:"11a", text:"Breakout Sessions",		  lead:""},
-	{time:"",	 text:"Creator Track:",			  lead:"Andrzej Mazur@JS13k Games", more:"Listening to Creator Needs"},
-	{time:"",	 text:"Crypto Track:",			  lead:"Melanie McDougal@Nexus Events",more:"Speed Networking"},
-	{},
-	{time:"12p", text:"Music Break"},
-	{},
-	{time:"1p",  text:"5 Minute Lightning Talks"},
-	{time:"3p",  text:"Breakouts", more:"General socializing and breakouts in Mozilla Hubs"},
+	{time:"9a",  text:"Introductions and Kickoff:", lead:"Amber Case" },
+	{time:"9:30a",	 text:"Fireside Chat:", 				  lead:"Douglas Rushkoff and Amber Case"},
+	{time:"10:30a", text:"Micropayments in Action:", lead:"Yuriy Dybskiy, CEO Puma Browser"},
+	{time:"10:45a", text:"Breakout Sessions",		  lead:""},
+	{time:"",	 text:"Creative Track:",			  lead:"Andrzej Mazur, Creator JS13k Games", more:"// Creator Needs and Opportunities"},
+	{time:"",	 text:"Crypto Track:",			  lead:"Melanie McDougal, Nexus Events", more:"// Speed Networking"},
+	{time:"12:30p", text:"Live Music and Break<br/><br/>"},
+	{time:"1p",  text:"Five minute lightning talks"},
+
+	{time:"", lead:"Sultan Akintunde, Ambassador: Grant for the Web", more:"// A simulation showing the endless possibilities of micropayments to content creators in Africa"},
+	{time:"", lead:"Tobie Langel, UnlockOpen, Geneva, Switzerland", more:"// Defining primitives or lego blocks for broader payment systems"},
+	{time:"", lead:"(Your Name Here)", more:"// Submit a talk below"},
+
+
+	{time:"2p or later",  text:"Conference Wrap-up"},
+	{time:"2:15p",  text:"Post-event Hangouts (URL will appear here)"},
 ]
 
 function paint_stuff() {
@@ -254,7 +289,7 @@ paint_stuff()
 <script>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// DYNAMICALLY INJECT TICKETS
+// DYNAMICALLY INJECT TICKETS - NOT USED 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
@@ -442,9 +477,7 @@ window.addEventListener('scroll', function(e) {
 </script>
 
 
-
-
-
+<script src="https://platform.twitter.com/widgets.js"></script>
 
 
 

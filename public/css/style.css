@@ -3,33 +3,15 @@
 body {}
 
 :root {
-
-  --void:#232426;
-  --azure:#518fe1;
-  --blackberry:#25003e;
-  --eggplant:#45236d;
-
-  --backarea:#f2f0f8;
-  --forearea:#ffffff;
-  --bordercolor:#dddddd;
-
-  --textondark:#e236eb;
-  --textdark:#3d3d3d;
-  --textlight:#e2e6eb;
-  --textheader:#4d4dad;
-  --textlink:#5d3d8d;
-  --textwarning:#999900;
-  --textgood:#006400;
-  --textbad:#DC143C;
-
-  --navheight:48px;
-  --cardpercentwidth:600px;
-  --cardmaxwidth:600px;
   --pagewidth:600px;
-  --padsides:20px;
+
+  --navback:#f2f0f8;
+  --navtext:#3d3d3d;
+  --navheight:48px;
+  --navheightmargin:10px;
 }
 
-html,body,div,span,img,input,textarea,button,canvas,a,h1,h2,h3,p, .page, .sugarcard {
+html,body,div,span,img,input,textarea,button,canvas,a,h1,h2,h3,p, .page {
   font-family: 'Nunito', sans-serif;
   border: 0px;
   margin: 0px;
@@ -42,40 +24,16 @@ html,body,div,span,img,input,textarea,button,canvas,a,h1,h2,h3,p, .page, .sugarc
 
 h1,h2,h3  {
   font-family: 'Spectral', sans-serif;
-  margin-top:10px;
-  margin-bottom:20px;
-  font-size:2em;
+  font-size:1.9em;
 }
 
 h2,h3 {
   font-size:1.40em;
-  margin-bottom:10px;
 }
 
-.nav {
-  position:fixed;
-  top:0;
-  z-index:2;
-  width:100%;
-  height:var(--navheight);
-  display:flex;
-  background:var(--backarea);
-  border-bottom:1px solid #eecefe;
-}
-
-.nav a {
-  margin-left:8px;
-  margin-right:8px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  filter: grayscale(90%);
-}
-
-.pad {
-  height:var(--navheight);  
-}
+/******************************************************************************************************************/
+/* this is for a layout style with a single center column */
+/******************************************************************************************************************/
 
 .page {
   width:var(--pagewidth);
@@ -83,6 +41,10 @@ h2,h3 {
   margin:auto;
   overflow:hidden;
 }
+
+/******************************************************************************************************************/
+/* a big button */
+/******************************************************************************************************************/
 
 .bigbutton {
   margin:4px;
@@ -109,24 +71,28 @@ h2,h3 {
   transform: scale(1.1);
 }
 
+/******************************************************************************************************************/
+/* app specific style */
+/******************************************************************************************************************/
+
 a {
   color:purple;
 }
 
 table {
   width: 100%;
-  border: 0px solid #ddd;
-  padding: 0px;
-  margin: 0px;
+  padding: 5px;
+  margin: 5px;
   border-collapse: separate;
   border-spacing: 0px;
 }
 
 td {
+  border: 1px dashed #eee;
   width: 100px;
   vertical-align: top;
-  padding:0px;
-  margin: 0px;
+  padding:5px;
+  margin: 5px;
   padding-top:10px;
   padding-bottom:10px;
 }
@@ -156,7 +122,7 @@ td+td {
   padding:45px;
   font-color:white;
   background: rgb(255,204,232);
-  background: radial-gradient(circle, rgba(255,204,232,0.5) 0%, rgba(134,151,191,0.5) 100%);
+  background: radial-gradient(circle, rgba(235,184,222,0.5) 0%, rgba(114,121,171,0.5) 100%);
 }
 
 .fadein {
